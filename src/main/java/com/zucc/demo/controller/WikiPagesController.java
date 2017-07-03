@@ -2,6 +2,8 @@ package com.zucc.demo.controller;
 
 import com.zucc.demo.dao.WikiPageDAO;
 import com.zucc.demo.model.WikiPageVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -21,6 +23,7 @@ import java.util.List;
 @RequestMapping("/wiki-pages")
 public class WikiPagesController {
     private List<WikiPageVo> pages = new ArrayList<>();
+    private static final Logger logger = LoggerFactory.getLogger(WikiPagesController.class);
 
     @Autowired
     WikiPageDAO dao;
@@ -35,6 +38,7 @@ public class WikiPagesController {
     @RequestMapping(value="/getPages.do", method=RequestMethod.POST)
     @ResponseBody
     public List<WikiPageVo> getUser(@RequestBody SearchParam searchParam) {
+        logger.info("getPages {}", searchParam.getWord());
         if (pages.isEmpty()) {
             pages = dao.getAllPages();
         }
@@ -57,6 +61,7 @@ public class WikiPagesController {
     @RequestMapping(value="/suggestWord.do", method=RequestMethod.POST)
     @ResponseBody
     public List<String> suggestWord(@RequestBody SearchParam searchParam) {
+        logger.info("suggestWord {}", searchParam.getWord());
         if (pages.isEmpty()) {
             pages = dao.getAllPages();
         }
