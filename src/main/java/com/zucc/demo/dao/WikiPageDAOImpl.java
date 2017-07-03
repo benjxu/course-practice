@@ -12,8 +12,6 @@ import java.util.List;
  */
 @Repository
 public class WikiPageDAOImpl implements WikiPageDAO {
-
-
     @Override
     public List<WikiPageVo> getAllPages() {
         List<WikiPageVo> pages = new ArrayList<>();
