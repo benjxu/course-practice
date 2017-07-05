@@ -20,7 +20,7 @@ class Transaction(object):
     	httpClient = None
         try:
             headers = {"Content-type": "application/json;charset=UTF-8", "Accept": "application/json, text/plain, */*"}
-            params = json.dumps({'word': 'Le'})
+            params = json.dumps({'word': 'bas'})
             start_timer = time.time()
             httpClient = httplib.HTTPConnection(addr, port, timeout=5)
             httpClient.request("POST", "/wiki-pages/suggestWord.do", params, headers)
